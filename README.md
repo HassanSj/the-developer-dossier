@@ -50,32 +50,6 @@ Preview the production build:
 npm run preview
 ```
 
-## 📦 Deployment
-
-### Vercel
-
-1. Push your code to GitHub
-2. Import your repository in [Vercel](https://vercel.com)
-3. Vercel will automatically detect the Vite configuration
-4. Deploy!
-
-The `vercel.json` file is already configured with optimal settings.
-
-### Netlify
-
-1. Push your code to GitHub
-2. Import your repository in [Netlify](https://netlify.com)
-3. Netlify will automatically detect the build settings from `netlify.toml`
-4. Deploy!
-
-### Other Platforms
-
-For other static hosting platforms (GitHub Pages, AWS S3, etc.):
-
-1. Run `npm run build`
-2. Upload the `dist` folder to your hosting provider
-3. Configure your server to serve `index.html` for all routes (SPA routing)
-
 ## 🛠️ Tech Stack
 
 - **React 18** - UI library
