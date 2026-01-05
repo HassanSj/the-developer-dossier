@@ -8,13 +8,13 @@ function Footer() {
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
           <div className="text-center md:text-left">
             <p className="text-sm font-serif text-foreground/80">
-              © 2025 The Chronicles of Hassan Sajjad
+              © 2026 The Chronicles of Hassan Sajjad
             </p>
             <p className="text-xs font-mono text-foreground/60 mt-1">
               Est. MMXIX • Volume V • All articles and investigations reserved
             </p>
             <p className="text-xs font-mono text-foreground/50 mt-1">
-              <Link to="/legal/terms" className="hover:text-foreground/70 transition-colors underline">
+              <Link to="/legal/terms/" className="hover:text-foreground/70 transition-colors underline">
                 Publication Terms
               </Link>
               {' • '}Unauthorized reproduction strictly prohibited
@@ -23,7 +23,7 @@ function Footer() {
           
           <div className="flex items-center space-x-6">
             <a
-              href="https://github.com/salaarkhan-dev"
+              href="https://github.com/hassansj"
               target="_blank"
               rel="noopener noreferrer"
               className="relative p-2 text-foreground/70 hover:text-foreground transition-colors"
@@ -37,7 +37,7 @@ function Footer() {
             </a>
             
             <a
-              href="https://www.linkedin.com/in/salaarkhan-dev"
+              href="https://www.linkedin.com/in/hassan-sajjad-881607224"
               target="_blank"
               rel="noopener noreferrer"
               className="relative p-2 text-foreground/70 hover:text-foreground transition-colors"
@@ -51,7 +51,7 @@ function Footer() {
             </a>
             
             <a
-              href="mailto:salaarkhan.dev@gmail.com"
+              href="mailto:sajjadhassa389gmail.com"
               target="_blank"
               rel="noopener noreferrer"
               className="relative p-2 text-foreground/70 hover:text-foreground transition-colors"

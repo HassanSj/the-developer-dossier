@@ -152,13 +152,13 @@ function Header({ toggleTheme }) {
           >
             Press
           </Link>
-          <Link
+          {/* <Link
             to="/lifestyle"
             onClick={handleNavLinkClick}
             className="text-xs sm:text-sm md:text-base font-serif transition-colors text-foreground/70 hover:text-foreground hover:underline"
           >
            LifeStyle
-          </Link>
+          </Link> */}
         </nav>
 
         <div className="flex items-center gap-3 md:gap-4">
@@ -232,13 +232,13 @@ function Header({ toggleTheme }) {
               >
                 Press
               </Link>
-              <Link
+              {/* <Link
                 to="/lifestyle"
                 onClick={handleNavLinkClick}
                 className="text-sm font-serif text-foreground/70 hover:text-foreground transition-colors"
               >
                 <span className="font-serif">Lifestyle</span>
-              </Link>
+              </Link> */}
             </div>
           </div>
         </nav>

@@ -1,5 +1,7 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Feather, Linkedin, Map, ChevronRight, Download } from 'lucide-react';
+import FlashDownload from '../components/FlashDownload';
 
 function Home() {
   const testimonials = [
@@ -11,40 +13,67 @@ function Home() {
       quote: "Hassan and I spent countless nights debugging by the glow of our monitors, turning coffee into code. His ability to see patterns in chaos turned our most challenging projects into success stories. The way he approaches problems is like watching a master clockmaker at work - precise, patient, and always with an elegant..."
     },
     {
-      name: "Don Cohen",
-      role: "Chief Operating Officer",
+      name: "Ahsan Abbasi",
+      role: "Project Manager at CSV",
       date: "Sep 4, 2025",
-      linkedin: "https://www.linkedin.com/in/don-cohen-541a161",
+      linkedin: "",
       quote: "Hassan worked at SecurePoint 360 from April 23 thru September 25. During his tenure: (a) he was dedicated to his role, with a good work ethic, (b) used the opportunity to learn from his peers and mature his skillset, (c) he has strong people skills and got along well with all team members, and (d) he was exposed to all..."
     },
     {
-      name: "M. Kashif",
-      role: "Head of Engineering at CSV",
+      name: "Zain Raza Shah",
+      role: "Project Partner at CSV",
       date: "Aug 28, 2022",
       quote: "In my years of leading engineering teams, I've met few developers with Hassan's blend of technical depth and creative problem-solving. He doesn't just write code; he crafts digital experiences. His work on our core systems was like finding the perfect gear in a complex mechanism - suddenly everything ran smoother."
     },
     {
-      name: "Usama Jawaid",
-      role: "Team Member at CSV",
+      name: "Ahmed Hammad",
+      role: "Project Partner at CSV",
       date: "Oct 15, 2022",
-      linkedin: "https://www.linkedin.com/in/usama-jawaid-551101220",
+      linkedin: "",
       quote: "Working under Hassan's leadership was like having a front-row seat to a masterclass in software craftsmanship. He taught me that good code isn't just about making computers understand - it's about creating something that outlasts trends. His code reviews were legendary, always leaving us better developers than we were..."
     },
     {
-      name: "Qaiser Imran",
-      role: "Senior SWE at 12Tech",
+      name: "Qaiser Shammim Ali",
+      role: "Cheif Operating Officer",
       date: "Aug 27, 2025",
-      linkedin: "https://www.linkedin.com/in/qaiser-imran",
+      linkedin: "",
       quote: "I have had the distinct privilege of working alongside Hassan Sajjad, and I can state with utmost conviction that he stands among the finest professionals and craftsmen of code in our modern age. Each engagement with him was not merely a task at hand but a true collaboration—spirited, engaging, and often delightfully ins..."
     },
-    {
-      name: "Hamza Mobeen",
-      role: "Senior SDET at 12 Tech",
-      date: "Aug 28, 2025",
-      linkedin: "https://www.linkedin.com/in/hamza-mobeen3",
-      quote: "In my experience, working with Hassan has been nothing short of exceptional. His analytical mind and calm, methodical manner bring immediate clarity to even the most tangled problems. In the final days before a build's release, when lesser spirits might falter, his dedication does not waver—he turns pressure into progr..."
-    }
   ];
+
+  // Button animation states
+  const buttonOptions = [
+    { label: "Schedule an Interview", hover: "Your story, my column — let's put the facts on record." },
+    { label: "Book a Front-Page Meeting", hover: "Hot off the press: 20 minutes to headline your idea." },
+    { label: "Reserve a Column in My Time", hover: "Ink your slot before the presses roll." }
+  ];
+  
+  const [currentButtonIndex, setCurrentButtonIndex] = useState(0);
+  const [isButtonHovered, setIsButtonHovered] = useState(false);
+  const [isButtonFading, setIsButtonFading] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || isButtonHovered) return;
+    
+    const interval = setInterval(() => {
+      setIsButtonFading(true);
+      setTimeout(() => {
+        setCurrentButtonIndex((prev) => (prev + 1) % buttonOptions.length);
+        setTimeout(() => {
+          setIsButtonFading(false);
+        }, 150);
+      }, 150);
+    }, 7000);
+
+    return () => clearInterval(interval);
+  }, [isButtonHovered, buttonOptions.length]);
+
+  const currentButton = buttonOptions[currentButtonIndex];
 
   return (
     <div className='space-y-20'>
@@ -55,7 +84,7 @@ function Home() {
             Portfolio Chronicle • Est. 2000 • Volume V
           </div>
           <h1 className="text-3xl md:text-5xl font-bold font-serif text-foreground mb-4">
-            THE DEVELOPER TIMES
+            DEVELOPER DOSSIER
           </h1>
           <div className="text-xs text-muted-foreground mt-2 italic font-serif">
             "MVPs to SaaS • Full‑Stack Product Engineering"
@@ -89,7 +118,11 @@ function Home() {
 
             {/* Desktop Buttons */}
             <div className="hidden md:flex justify-center mt-3">
-              <div className="group text-center">
+              <div 
+                className="group text-center"
+                onMouseEnter={() => setIsButtonHovered(true)}
+                onMouseLeave={() => setIsButtonHovered(false)}
+              >
                 <div className="mb-3">
                   <a aria-label="Hire Me — Start Today" href="#correspondence">
                     <button
@@ -113,7 +146,7 @@ function Home() {
                   </div>
                 </div>
                 <a
-                  aria-label="Schedule an Interview"
+                  aria-label={currentButton.label}
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://calendly.com/sajjadhassa389/quick-case-check-in"
@@ -123,12 +156,14 @@ function Home() {
                     className="inline-flex items-center justify-center font-serif text-sm tracking-wider uppercase relative cursor-pointer group px-4 py-2 border border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background transition-colors duration-200"
                   >
                     <span className="inline-flex items-center gap-2">
-                      <span className="transition-opacity duration-300 opacity-100">Schedule an Interview</span>
+                      <span className={`transition-opacity duration-300 ${isButtonFading ? 'opacity-0' : 'opacity-100'}`}>
+                        {currentButton.label}
+                      </span>
                     </span>
                   </button>
                 </a>
                 <div className="mt-2 text-[10px] sm:text-xs text-muted-foreground font-sans italic opacity-100 transition-opacity duration-200">
-                  Your story, my column — let's put the facts on record.
+                  {currentButton.hover}
                 </div>
               </div>
             </div>
@@ -157,7 +192,11 @@ function Home() {
 
             {/* Mobile Buttons */}
             <div className="flex md:hidden justify-center mt-4">
-              <div className="group text-center">
+              <div 
+                className="group text-center"
+                onMouseEnter={() => setIsButtonHovered(true)}
+                onMouseLeave={() => setIsButtonHovered(false)}
+              >
                 <div className="mb-3">
                   <a aria-label="Hire Me — Start Today" href="#correspondence">
                     <button
@@ -181,7 +220,7 @@ function Home() {
                   </div>
                 </div>
                 <a
-                  aria-label="Schedule an Interview"
+                  aria-label={currentButton.label}
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://calendly.com/sajjadhassa389/quick-case-check-in"
@@ -191,12 +230,14 @@ function Home() {
                     className="inline-flex items-center justify-center font-serif text-sm tracking-wider uppercase relative cursor-pointer group px-4 py-2 border border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background transition-colors duration-200"
                   >
                     <span className="inline-flex items-center gap-2">
-                      <span className="transition-opacity duration-300 opacity-100">Schedule an Interview</span>
+                      <span className={`transition-opacity duration-300 ${isButtonFading ? 'opacity-0' : 'opacity-100'}`}>
+                        {currentButton.label}
+                      </span>
                     </span>
                   </button>
                 </a>
                 <div className="mt-2 text-[10px] sm:text-xs text-muted-foreground font-sans italic opacity-100 transition-opacity duration-200">
-                  Your story, my column — let's put the facts on record.
+                  {currentButton.hover}
                 </div>
               </div>
             </div>
@@ -240,26 +281,36 @@ function Home() {
                   For your perusal, I present my professional credentials and accomplishments in an official capacity.
                 </p>
                 <div className="relative">
-                  <div className="inline-flex">
+                  <FlashDownload interceptLinkNavigation={true} navigateDelayMs={3000}>
                     <div className="relative inline-block group">
                       <div className="absolute -bottom-1 -right-1 w-full h-full border-r border-b border-foreground/20 group-hover:border-foreground/40 transition-all duration-300 -z-10"></div>
-                      <button
-                        type="button"
-                        className="inline-flex items-center justify-center font-serif text-sm tracking-wider uppercase border hover:bg-foreground/5 cursor-pointer group relative bg-background/95 px-8 py-3 border-foreground/30 group-hover:bg-foreground/5 transition-all duration-300"
+                      <a
+                        href="/resume/HassanResume.pdf"
+                        download="Hassan Sajjad - FullStack Engineer - Resume.pdf"
+                        className="relative z-10 inline-flex items-center justify-center font-serif text-sm tracking-wider uppercase border hover:bg-foreground/5 cursor-pointer group bg-background/95 px-8 py-3 border-foreground/30 group-hover:bg-foreground/5 transition-all duration-300"
                       >
                         <span className="inline-flex items-center gap-2">
-                          <a
-                            href="/salaar-khan-resume.pdf"
-                            download="Hassan Sajjad - FullStack Engineer - Resume.pdf"
-                            className="relative z-10 inline-flex items-center"
+                          <span className="mr-2">REQUEST ACCESS</span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="w-4 h-4 transform group-hover:translate-y-0.5 transition-transform"
                           >
-                            <span className="mr-2">REQUEST ACCESS</span>
-                            <Download className="w-4 h-4 transform group-hover:translate-y-0.5 transition-transform" />
-                          </a>
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                          </svg>
                         </span>
-                      </button>
+                      </a>
                     </div>
-                  </div>
+                  </FlashDownload>
                 </div>
                 <p className="text-xs text-muted-foreground mt-4 italic font-serif">
                   <span className="inline-block border-t border-foreground/10 pt-2">
@@ -830,7 +881,7 @@ function Home() {
                             alt="noise"
                             loading="lazy"
                             className="absolute inset-0 w-full h-full"
-                            src="https://res.cloudinary.com/dnpxalm5i/image/upload/f_auto,q_auto,w_3840/gh-pages/public/images/texture.png"
+                            src="https://res.cloudinary.com/dx6ro5dgg/image/upload/v1767300775/developer-dossier/images/powerforge_pm52iw.png"
                           />
                           <div className="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
                             <div className="relative">
@@ -844,7 +895,7 @@ function Home() {
                                   letterSpacing: '0.10em'
                                 }}
                               >
-                                The SP360 Case
+                               PowerForge
                               </span>
                             </div>
                           </div>
@@ -872,14 +923,14 @@ function Home() {
                   <div className="p-3 flex flex-col justify-between">
                     <div>
                       <h3 className="font-serif font-bold text-lg tracking-wide uppercase text-foreground">
-                        The SP360 Case
+                        PowerForge
                       </h3>
                       <p className="text-xs font-mono text-foreground/70 mt-1">
                         Case #001 • <span className="inline-block">File Ref: ███████████</span> • 2023
                       </p>
                     </div>
                     <div className="mt-2">
-                      <Link to="/cases/1">
+                      <Link to="/cases/3">
                         <button
                           type="button"
                           className="inline-flex items-center justify-center font-serif text-sm tracking-wider uppercase border hover:bg-foreground/5 cursor-pointer group relative w-full bg-background/95 px-6 py-4 border-foreground/30 group-hover/card:bg-foreground/5 transition-all duration-300 group/button"
@@ -905,10 +956,10 @@ function Home() {
                       <div className="w-full h-52 overflow-hidden">
                         <div className="relative overflow-hidden w-full h-full" style={{ transform: 'rotate(-2deg)' }}>
                           <img
-                            alt="The Developer Times"
+                            alt="Developer Dossier"
                             loading="lazy"
                             className="object-cover transition-all duration-700 ease-in-out grayscale-[70%] sepia-[15%] md:blur-[2px] md:scale-110 md:group-hover/card:blur-[0] md:group-hover/card:scale-100 md:group-hover/card:grayscale-0 md:group-hover/card:sepia-0 w-full h-full"
-                            src="https://res.cloudinary.com/dnpxalm5i/image/upload/f_auto,q_auto,w_3840/gh-pages/public/cases/2/hero.jpg"
+                            src="https://res.cloudinary.com/dx6ro5dgg/image/upload/v1767301372/developer-dossier/images/dossier_alyl7k.png"
                           />
                           <img
                             alt="noise"
@@ -940,7 +991,7 @@ function Home() {
                   <div className="p-3 flex flex-col justify-between">
                     <div>
                       <h3 className="font-serif font-bold text-lg tracking-wide uppercase text-foreground">
-                        The Developer Times
+                        Developer Dossier
                       </h3>
                       <p className="text-xs font-mono text-foreground/70 mt-1">
                         Case #002 • <span className="inline-block">File Ref: ███████████</span> • 2025
@@ -973,10 +1024,10 @@ function Home() {
                       <div className="w-full h-52 overflow-hidden">
                         <div className="relative overflow-hidden w-full h-full" style={{ transform: 'rotate(-1deg)' }}>
                           <img
-                            alt="The Feyra Case"
+                            alt="ProtoGenix"
                             loading="lazy"
                             className="object-cover transition-all duration-700 ease-in-out grayscale-[70%] sepia-[15%] md:blur-[2px] md:scale-110 md:group-hover/card:blur-[0] md:group-hover/card:scale-100 md:group-hover/card:grayscale-0 md:group-hover/card:sepia-0 w-full h-full"
-                            src="https://res.cloudinary.com/dnpxalm5i/image/upload/f_auto,q_auto,w_3840/gh-pages/public/press/from-the-future/banner.jpg"
+                            src="https://res.cloudinary.com/dx6ro5dgg/image/upload/v1767302010/developer-dossier/images/protogenix_zlgsbe.png"
                           />
                           <img
                             alt="noise"
@@ -1008,7 +1059,7 @@ function Home() {
                   <div className="p-3 flex flex-col justify-between">
                     <div>
                       <h3 className="font-serif font-bold text-lg tracking-wide uppercase text-foreground">
-                        The Feyra Case
+                        ProtoGenix
                       </h3>
                       <p className="text-xs font-mono text-foreground/70 mt-1">
                         Case #003 • <span className="inline-block">File Ref: ███████████</span> • 2025
@@ -1041,10 +1092,10 @@ function Home() {
                       <div className="w-full h-52 overflow-hidden">
                         <div className="relative overflow-hidden w-full h-full" style={{ transform: 'rotate(0deg)' }}>
                           <img
-                            alt="The TapQ Case"
+                            alt="ChatPulse"
                             loading="lazy"
                             className="object-cover transition-all duration-700 ease-in-out grayscale-[70%] sepia-[15%] md:blur-[2px] md:scale-110 md:group-hover/card:blur-[0] md:group-hover/card:scale-100 md:group-hover/card:grayscale-0 md:group-hover/card:sepia-0 w-full h-full"
-                            src="https://res.cloudinary.com/dnpxalm5i/image/upload/f_auto,q_auto,w_3840/gh-pages/public/images/case-placeholder.jpg"
+                            src="https://res.cloudinary.com/dx6ro5dgg/image/upload/v1767301727/developer-dossier/images/chat-pulse_x3x.png"
                           />
                           <img
                             alt="noise"
@@ -1052,22 +1103,7 @@ function Home() {
                             className="absolute inset-0 w-full h-full"
                             src="https://res.cloudinary.com/dnpxalm5i/image/upload/f_auto,q_auto,w_3840/gh-pages/public/images/texture.png"
                           />
-                          <div className="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
-                            <div className="relative">
-                              <span
-                                className="relative text-black font-serif uppercase text-center block font-medium text-4xl tracking-[0.10em]"
-                                style={{
-                                  opacity: 0.88,
-                                  mixBlendMode: 'multiply',
-                                  filter: 'blur(0.35px) contrast(1)',
-                                  textShadow: '1px 1px 0 rgba(0,0,0,0.3), 0 0 2px rgba(0,0,0,0.18), 0 1.5px 2px rgba(0,0,0,0.15), -0.6px -0.6px 0 rgba(255,255,255,0.12)',
-                                  letterSpacing: '0.10em'
-                                }}
-                              >
-                                The TapQ Case
-                              </span>
-                            </div>
-                          </div>
+                          
                           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                             <img
                               alt="classified stamp"
@@ -1092,7 +1128,7 @@ function Home() {
                   <div className="p-3 flex flex-col justify-between">
                     <div>
                       <h3 className="font-serif font-bold text-lg tracking-wide uppercase text-foreground">
-                        The TapQ Case
+                        ChatPulse
                       </h3>
                       <p className="text-xs font-mono text-foreground/70 mt-1">
                         Case #004 • <span className="inline-block">File Ref: ███████████</span> • 2025
@@ -1150,9 +1186,9 @@ function Home() {
           <div className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
             Dispatches of Praise • Volume III
           </div>
-          <h2 className="text-2xl md:text-3xl font-bold font-serif text-foreground">
+          <h3 className="text-2xl md:text-3xl font-bold font-serif text-foreground">
             ENDORSEMENTS & ACCOLADES
-          </h2>
+          </h3>
           <div className="text-xs text-muted-foreground mt-2 italic font-serif">
             "In the Words of Those Who've Borne Witness to my Craft"
           </div>
@@ -1163,8 +1199,9 @@ function Home() {
 
         <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
           <div className="group flex overflow-hidden p-2 [--gap:1rem] [gap:var(--gap)] flex-row [--duration:40s]">
+            {/* First marquee - First 3 testimonials */}
             <div className="flex shrink-0 justify-around [gap:var(--gap)] group-hover:[animation-play-state:paused] animate-marquee flex-row">
-              {testimonials.map((testimonial, index) => (
+              {testimonials.slice(0, 3).map((testimonial, index) => (
                 <article
                   key={index}
                   className="bg-background border border-foreground/30 shadow-sm max-w-xs md:max-w-sm p-6 font-serif flex flex-col hover:shadow-md transition-all duration-300 cursor-pointer"
@@ -1208,9 +1245,99 @@ function Home() {
             </div>
             {/* Duplicate for seamless loop */}
             <div className="flex shrink-0 justify-around [gap:var(--gap)] group-hover:[animation-play-state:paused] animate-marquee flex-row">
-              {testimonials.map((testimonial, index) => (
+              {testimonials.slice(0, 3).map((testimonial, index) => (
                 <article
                   key={`dup-${index}`}
+                  className="bg-background border border-foreground/30 shadow-sm max-w-xs md:max-w-sm p-6 font-serif flex flex-col hover:shadow-md transition-all duration-300 cursor-pointer"
+                >
+                  <header className="mb-4 relative">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h4 className="text-xl font-bold leading-tight">{testimonial.name}</h4>
+                        <p className="text-[11px] text-muted-foreground uppercase tracking-widest">{testimonial.role}</p>
+                      </div>
+                      <button
+                        className="cursor-pointer group flex items-center gap-1.5 px-2 sm:px-3 py-1.5 text-[11px] sm:text-xs font-serif bg-foreground/5 hover:bg-foreground/10 rounded-full transition-all border border-foreground/20 hover:border-foreground/30 whitespace-nowrap text-foreground/80 hover:text-foreground"
+                        title="Read testimonial letter"
+                      >
+                        <Feather className="w-3 h-3 flex-shrink-0" />
+                        <span>Read Letter</span>
+                      </button>
+                    </div>
+                    <time className="block mt-1 text-[11px] text-muted-foreground italic">{testimonial.date}</time>
+                    {testimonial.linkedin && (
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-2 inline-flex items-center gap-1.5 text-[11px] text-foreground/80 hover:text-foreground underline decoration-dotted underline-offset-4 transition-colors font-serif"
+                        title="View professional reference"
+                        href={testimonial.linkedin}
+                      >
+                        <Linkedin className="w-3.5 h-3.5" />
+                        LinkedIn Directory
+                      </a>
+                    )}
+                  </header>
+                  <blockquote className="relative border-l-2 border-foreground/20 pl-4 italic text-sm leading-relaxed text-foreground/90 overflow-hidden">
+                    <div className="relative">
+                      "{testimonial.quote}"
+                      <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-background to-transparent pointer-events-none"></div>
+                    </div>
+                  </blockquote>
+                </article>
+              ))}
+            </div>
+          </div>
+          {/* Second marquee - Last 3 testimonials, reverse direction, hidden on mobile */}
+          <div className="group overflow-hidden p-2 [--gap:1rem] [gap:var(--gap)] flex-row [--duration:40s] hidden sm:flex">
+            <div className="flex shrink-0 justify-around [gap:var(--gap)] group-hover:[animation-play-state:paused] animate-marquee flex-row [animation-direction:reverse]">
+              {testimonials.slice(3, 6).map((testimonial, index) => (
+                <article
+                  key={index + 3}
+                  className="bg-background border border-foreground/30 shadow-sm max-w-xs md:max-w-sm p-6 font-serif flex flex-col hover:shadow-md transition-all duration-300 cursor-pointer"
+                >
+                  <header className="mb-4 relative">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h4 className="text-xl font-bold leading-tight">{testimonial.name}</h4>
+                        <p className="text-[11px] text-muted-foreground uppercase tracking-widest">{testimonial.role}</p>
+                      </div>
+                      <button
+                        className="cursor-pointer group flex items-center gap-1.5 px-2 sm:px-3 py-1.5 text-[11px] sm:text-xs font-serif bg-foreground/5 hover:bg-foreground/10 rounded-full transition-all border border-foreground/20 hover:border-foreground/30 whitespace-nowrap text-foreground/80 hover:text-foreground"
+                        title="Read testimonial letter"
+                      >
+                        <Feather className="w-3 h-3 flex-shrink-0" />
+                        <span>Read Letter</span>
+                      </button>
+                    </div>
+                    <time className="block mt-1 text-[11px] text-muted-foreground italic">{testimonial.date}</time>
+                    {testimonial.linkedin && (
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-2 inline-flex items-center gap-1.5 text-[11px] text-foreground/80 hover:text-foreground underline decoration-dotted underline-offset-4 transition-colors font-serif"
+                        title="View professional reference"
+                        href={testimonial.linkedin}
+                      >
+                        <Linkedin className="w-3.5 h-3.5" />
+                        LinkedIn Directory
+                      </a>
+                    )}
+                  </header>
+                  <blockquote className="relative border-l-2 border-foreground/20 pl-4 italic text-sm leading-relaxed text-foreground/90 overflow-hidden">
+                    <div className="relative">
+                      "{testimonial.quote}"
+                      <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-background to-transparent pointer-events-none"></div>
+                    </div>
+                  </blockquote>
+                </article>
+              ))}
+            </div>
+            {/* Duplicate for seamless loop */}
+            <div className="flex shrink-0 justify-around [gap:var(--gap)] group-hover:[animation-play-state:paused] animate-marquee flex-row [animation-direction:reverse]">
+              {testimonials.slice(3, 6).map((testimonial, index) => (
+                <article
+                  key={`dup-rev-${index + 3}`}
                   className="bg-background border border-foreground/30 shadow-sm max-w-xs md:max-w-sm p-6 font-serif flex flex-col hover:shadow-md transition-all duration-300 cursor-pointer"
                 >
                   <header className="mb-4 relative">
