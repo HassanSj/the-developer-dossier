@@ -249,7 +249,7 @@ function Home() {
               </div>
               <div className="grid grid-cols-3 gap-4 text-center">
                 <div>
-                  <div className="text-xl font-bold font-serif">2+</div>
+                  <div className="text-xl font-bold font-serif">5+</div>
                   <div className="text-[0.65rem] sm:text-xs md:text-sm uppercase font-sans tracking-wide mt-1">
                     Years Experience
                   </div>
@@ -439,7 +439,7 @@ function Home() {
             <div className="relative pl-12 md:pl-0 md:pr-8">
               <div className="md:hidden absolute left-3.5 md:left-[calc(50%-6px)] w-3 h-3 bg-foreground rotate-45 opacity-70 border border-background -mt-1.5 top-1/2 transform -translate-y-1/2"></div>
               <div className="absolute left-0 md:left-1/2 -ml-10 -mt-2 w-24 text-center font-serif tracking-widest text-[0.7rem] text-foreground border border-foreground/30 bg-background/90 px-2 py-1">
-                Jan 2023 - Jan 2024
+                Jan 2023 - Dec 2023
               </div>
               <div className="bg-background/90 border border-foreground/20 p-4 sm:p-6">
                 <h4 className="text-base sm:text-lg font-bold text-foreground mb-1 font-serif">
@@ -457,36 +457,106 @@ function Home() {
                 </p>
                 <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm leading-relaxed font-sans text-foreground/75">
                   <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
-                    Engineered Scalable SPAs: Developed high-performance SPAs using React, Redux, and Tailwind CSS, increasing user engagement by 30% and improving application performance by 25%.
+                    Created website layouts and user interfaces using HTML, CSS, SCSS, Bootstrap, Tailwind, Styled Components, Material UI, Semantic UI, and Ant Design.
                   </li>
                   <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
-                    Optimized Database Performance: Enhanced efficiency by optimizing stored procedures and triggers in PostgreSQL, reducing query execution time by 40%.
+                    Utilized Git for version control, ensuring that changes were tracked and reviewed using Bitbucket and other platforms such as GitHub and GitLab.
                   </li>
                   <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
-                    Integrated Third-Party APIs: Expanded application functionality leading to 20% improvement in user interaction.
+                    Managed project tasks and timelines using Asana and ClickUp, collaborating with cross-functional teams to deliver features and enhancements in an agile environment.
                   </li>
                   <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
-                    Developed RESTful APIs with Nest.js: Built scalable, secure APIs improving backend efficiency by 35%.
+                    Implemented MERN stack solutions (MongoDB, Express.js, React/Next.js, Node.js/Next.js) and used PostgreSQL with TypeORM and Prisma to build scalable, maintainable backends.
                   </li>
                   <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
-                    Optimized Application Performance: Refined routing and navigation achieving a 15% boost in performance and user satisfaction.
+                    Developed single-page applications (SPAs) using the React framework and utilized Redux, React Hooks, and Context API for robust state management and improved user experience.
                   </li>
                   <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
-                    Implemented CI/CD Pipelines: Automated deployment with Jenkins and Docker, reducing deployment time by 25%.
+                    Conducted unit tests for the application using Jest and worked with CI/CD pipelines using CircleCI and Jenkins to ensure reliable releases.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Integrated data from various back-end services and databases and designed REST calls to improve user interface performance.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Introduced agile methodologies and development best practices to the division to enhance product development.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Developed web platform backends using Node.js and Django frameworks and authored Python and JavaScript code within the Django framework.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Built APIs and data clients to consume APIs and worked with back-end developers to design and refine API contracts.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Utilized Node.js, ORMs, and SQL/NoSQL databases to develop and manage scalable data layers.
                   </li>
                 </ul>
               </div>
             </div>
 
-            {/* 12 Tech */}
+            {/* Triomatic Solutions */}
             <div className="relative pl-12 md:pl-0 md:ml-1/2 md:pl-8">
+              <div className="md:hidden absolute left-3.5 md:left-[calc(50%-6px)] w-3 h-3 bg-foreground rotate-45 opacity-70 border border-background -mt-1.5 top-1/2 transform -translate-y-1/2"></div>
+              <div className="absolute left-0 md:left-1/2 -ml-10 -mt-2 w-24 text-center font-serif tracking-widest text-[0.7rem] text-foreground border border-foreground/30 bg-background/90 px-2 py-1">
+                Apr 2021 - Mar 2023
+              </div>
+              <div className="bg-background/90 border border-foreground/20 p-4 sm:p-6">
+                <h4 className="text-base sm:text-lg font-bold text-foreground mb-1 font-serif">
+                  Full Stack Engineer
+                </h4>
+                <p className="text-xs sm:text-sm italic text-muted-foreground mb-3 sm:mb-4 pb-2 sm:pb-3 border-b border-foreground/20 font-serif">
+                  <a
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline decoration-dotted underline-offset-2 text-muted-foreground hover:decoration-solid"
+                  >
+                    Triomatic Solutions • Remote
+                  </a>
+                </p>
+                <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm leading-relaxed font-sans text-foreground/75">
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Developed a fully functional admin dashboard using Next.js and React.js, improving data visualization and reporting capabilities.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Integrated OCR functionalities into the platform using Flask APIs, allowing users to extract text from images and PDFs.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Hosted the platform on AWS, leveraging EC2 instances, S3 buckets, and RDS to ensure high availability, scalability, and security.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Utilized PostgreSQL to store and manage data, ensuring data consistency and integrity throughout the platform.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Implemented containerization using Docker, simplifying deployment and ensuring consistency across environments.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Conducted load testing and performance optimization to ensure the platform met response time requirements and handled concurrent users.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Collaborated with cross-functional teams of developers, designers, and project managers to deliver features and enhancements in an agile development environment.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Implemented version control using Git, enabling easy tracking of changes and collaboration with team members.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Provided technical guidance and mentorship to junior team members, sharing best practices and promoting knowledge sharing.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Maintained up-to-date knowledge of industry trends and emerging technologies, continually improving the platform and development process.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Synergy-IT */}
+            <div className="relative pl-12 md:pl-0 md:pr-8">
               <div className="md:hidden absolute left-3.5 md:left-[calc(50%-6px)] w-3 h-3 bg-foreground rotate-45 opacity-70 border border-background -mt-1.5 top-1/2 transform -translate-y-1/2"></div>
               <div className="absolute left-0 md:left-1/2 -ml-10 -mt-2 w-24 text-center font-serif tracking-widest text-[0.7rem] text-foreground border border-foreground/30 bg-background/90 px-2 py-1">
                 Oct 2022 - Feb 2023
               </div>
               <div className="bg-background/90 border border-foreground/20 p-4 sm:p-6">
                 <h4 className="text-base sm:text-lg font-bold text-foreground mb-1 font-serif">
-                  Senior Software Engineer
+                  Trainee (.NET)
                 </h4>
                 <p className="text-xs sm:text-sm italic text-muted-foreground mb-3 sm:mb-4 pb-2 sm:pb-3 border-b border-foreground/20 font-serif">
                   <a
@@ -500,22 +570,104 @@ function Home() {
                 </p>
                 <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm leading-relaxed font-sans text-foreground/75">
                   <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
-                    Modernized React Applications: Upgraded legacy class components to modern functional components using React Hooks, improving code maintainability and reducing bugs by 20%.
+                    Completed a rigorous 6-month bootcamp specializing in C#, .NET, Entity Framework, and LINQ, gaining a comprehensive understanding of the .NET ecosystem.
                   </li>
                   <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
-                    Optimized Application Performance: Implemented lazy loading, code splitting, and Dockerized containers on AWS EC2, reducing application load time by 25% and improving scalability.
+                    Mastered C# programming language fundamentals and advanced concepts, building a solid foundation for .NET application development.
                   </li>
                   <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
-                    Enhanced UI/UX with Tailwind CSS: Designed responsive, user-friendly interfaces ensuring consistent design across devices and boosting user engagement by 20%.
+                    Developed robust and efficient applications utilizing the .NET framework, demonstrating proficiency in building scalable solutions.
                   </li>
                   <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
-                    Integrated Django REST Framework: Developed secure backend services including middleware, session management, and cookie-based authentication, improving API reliability by 15%.
+                    Acquired in-depth knowledge of Entity Framework for data access and manipulation, enabling streamlined database interactions within applications.
                   </li>
                   <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
-                    Implemented CI/CD Pipelines: Automated deployment processes using Jenkins and Docker, reducing deployment time by 30% and ensuring seamless, reliable releases.
+                    Gained expertise in LINQ (Language Integrated Query), crafting powerful and expressive queries for efficient data retrieval and management.
                   </li>
                   <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
-                    Third-Party API Integration: Integrated various third-party APIs to extend functionality, enhancing user interaction and feature richness.
+                    Enhanced problem-solving and software development skills through intensive practical exercises and real-world project simulations, preparing for professional software development roles.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Luqon IT Solutions and Marketing */}
+            <div className="relative pl-12 md:pl-0 md:ml-1/2 md:pl-8">
+              <div className="md:hidden absolute left-3.5 md:left-[calc(50%-6px)] w-3 h-3 bg-foreground rotate-45 opacity-70 border border-background -mt-1.5 top-1/2 transform -translate-y-1/2"></div>
+              <div className="absolute left-0 md:left-1/2 -ml-10 -mt-2 w-24 text-center font-serif tracking-widest text-[0.7rem] text-foreground border border-foreground/30 bg-background/90 px-2 py-1">
+                May 2022 - Dec 2022
+              </div>
+              <div className="bg-background/90 border border-foreground/20 p-4 sm:p-6">
+                <h4 className="text-base sm:text-lg font-bold text-foreground mb-1 font-serif">
+                  Development Intern
+                </h4>
+                <p className="text-xs sm:text-sm italic text-muted-foreground mb-3 sm:mb-4 pb-2 sm:pb-3 border-b border-foreground/20 font-serif">
+                  <span>Luqon IT Solutions and Marketing</span>
+                </p>
+                <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm leading-relaxed font-sans text-foreground/75">
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Developed and redesigned application frontends in Bootstrap with Material Design.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Built responsive UIs for desktop, tablet, and mobile devices.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Ensured high-performance user interfaces on both mobile and desktop.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Coordinated with back-end developers in the process of building RESTful APIs.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Wrote code to communicate with external web services (Web APIs).
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Coded tested, idiomatic, and documented JavaScript, HTML, and CSS, ensuring cross-browser compatibility.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* British Council */}
+            <div className="relative pl-12 md:pl-0 md:pr-8">
+              <div className="md:hidden absolute left-3.5 md:left-[calc(50%-6px)] w-3 h-3 bg-foreground rotate-45 opacity-70 border border-background -mt-1.5 top-1/2 transform -translate-y-1/2"></div>
+              <div className="absolute left-0 md:left-1/2 -ml-10 -mt-2 w-24 text-center font-serif tracking-widest text-[0.7rem] text-foreground border border-foreground/30 bg-background/90 px-2 py-1">
+                May 2019 - Sep 2019
+              </div>
+              <div className="bg-background/90 border border-foreground/20 p-4 sm:p-6">
+                <h4 className="text-base sm:text-lg font-bold text-foreground mb-1 font-serif">
+                  Engineering Intern
+                </h4>
+                <p className="text-xs sm:text-sm italic text-muted-foreground mb-1 font-serif">
+                  <span>British Council</span>
+                </p>
+              </div>
+            </div>
+
+            {/* Upwork */}
+            <div className="relative pl-12 md:pl-0 md:ml-1/2 md:pl-8">
+              <div className="md:hidden absolute left-3.5 md:left-[calc(50%-6px)] w-3 h-3 bg-foreground rotate-45 opacity-70 border border-background -mt-1.5 top-1/2 transform -translate-y-1/2"></div>
+              <div className="absolute left-0 md:left-1/2 -ml-10 -mt-2 w-24 text-center font-serif tracking-widest text-[0.7rem] text-foreground border border-foreground/30 bg-background/90 px-2 py-1">
+                Sep 2022 - Present
+              </div>
+              <div className="bg-background/90 border border-foreground/20 p-4 sm:p-6">
+                <h4 className="text-base sm:text-lg font-bold text-foreground mb-1 font-serif">
+                  Full Stack Developer
+                </h4>
+                <p className="text-xs sm:text-sm italic text-muted-foreground mb-3 sm:mb-4 pb-2 sm:pb-3 border-b border-foreground/20 font-serif">
+                  <span>Upwork • Remote</span>
+                </p>
+                <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm leading-relaxed font-sans text-foreground/75">
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Successfully completed multiple projects with five-star ratings, demonstrating proficiency in React.js, Next.js, and AWS.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Developed fully functional admin dashboards using React.js and Next.js, enabling users to browse and manage team members and subscriptions.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Delivered an education-based project integrating multiple APIs and databases, leveraging React.js to provide a seamless user experience and improved data visualization and reporting.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Collaborated with cross-functional teams of designers, developers, and project managers to deliver projects in an agile development environment.
                   </li>
                 </ul>
               </div>
