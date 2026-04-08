@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import { OnboardingTourProvider } from '../onboarding/OnboardingTourContext';
+import OnboardingTour from '../onboarding/OnboardingTour';
 
 function Layout({ children }) {
   const [theme, setTheme] = useState('light');
@@ -25,22 +27,24 @@ function Layout({ children }) {
   };
 
   return (
-    <div className="min-h-screen mx-auto px-8">
-      <Header toggleTheme={toggleTheme} />
-      <div className="h-16 md:h-20 lg:h-20"></div>
-      <main
-        className="py-6"
-        id="main-content"
-        role="main"
-        itemScope
-        itemType="https://schema.org/WebPage"
-        aria-label="Home page content"
-      >
-
-        {children}
-      </main>
-      <Footer />
-    </div>
+    <OnboardingTourProvider>
+      <div className="min-h-screen mx-auto px-8">
+        <Header toggleTheme={toggleTheme} />
+        <div className="h-16 md:h-20 lg:h-20"></div>
+        <main
+          className="py-6"
+          id="main-content"
+          role="main"
+          itemScope
+          itemType="https://schema.org/WebPage"
+          aria-label="Home page content"
+        >
+          {children}
+        </main>
+        <Footer />
+        <OnboardingTour />
+      </div>
+    </OnboardingTourProvider>
   );
 }
 
