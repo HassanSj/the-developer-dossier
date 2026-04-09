@@ -435,6 +435,58 @@ function Home() {
 
           <div className="space-y-8">
 
+            {/* Triflux Private Limited */}
+            <div className="relative pl-12 md:pl-0 md:pr-8">
+              <div className="md:hidden absolute left-3.5 md:left-[calc(50%-6px)] w-3 h-3 bg-foreground rotate-45 opacity-70 border border-background -mt-1.5 top-1/2 transform -translate-y-1/2"></div>
+              <div className="absolute left-0 md:left-1/2 -ml-10 -mt-2 w-24 text-center font-serif tracking-widest text-[0.7rem] text-foreground border border-foreground/30 bg-background/90 px-2 py-1">
+                Jan 2023 - Present
+              </div>
+              <div className="bg-background/90 border border-foreground/20 p-4 sm:p-6">
+                <h4 className="text-base sm:text-lg font-bold text-foreground mb-1 font-serif">
+                  Senior Software Engineer
+                </h4>
+                <p className="text-xs sm:text-sm italic text-muted-foreground mb-3 sm:mb-4 pb-2 sm:pb-3 border-b border-foreground/20 font-serif">
+                  <a
+                    href="https://www.triflux.tech"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline decoration-dotted underline-offset-2 text-muted-foreground hover:decoration-solid"
+                  >
+                    Triflux Private Limited, Islamabad, Pakistan
+                  </a>
+                </p>
+                <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm leading-relaxed font-sans text-foreground/75">
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Led end-to-end architecture and full-stack delivery of enterprise-grade applications, driving system design, development, deployment, and post-production optimization across multiple high-impact products.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Architected scalable, high-performance systems using React.js, Next.js, Node.js, and Django, ensuring modular design, clean architecture principles, and long-term maintainability.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Owned technical roadmap and sprint execution, leading Agile ceremonies, release planning, and backlog prioritization to align engineering output with strategic business objectives.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Directed cross-functional engineering teams, improving delivery velocity and stakeholder alignment through structured collaboration using Jira and Atlassian tools.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Designed and implemented secure cloud-native architectures across AWS, Azure, and GCP, enhancing system reliability, scalability, and fault tolerance.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Established and optimized CI/CD pipelines and DevOps workflows, reducing deployment time, minimizing downtime, and improving release stability.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Championed engineering best practices, introducing code quality standards, performance benchmarking, and architectural governance to elevate overall system robustness.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Mentored and guided junior and mid-level developers, conducting code reviews, enforcing design standards, and fostering a culture of continuous improvement.
+                  </li>
+                  <li className="relative pl-4 sm:pl-5 before:absolute before:left-0 before:top-[0.25rem] sm:before:top-[0.3rem] before:text-foreground before:text-[0.6rem] sm:before:text-[0.7rem] before:content-['❖']">
+                    Collaborated with product, QA, DevOps, and business stakeholders to translate complex requirements into scalable technical solutions with measurable business impact.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
             {/* Cybersoft Vantage */}
             <div className="relative pl-12 md:pl-0 md:pr-8">
               <div className="md:hidden absolute left-3.5 md:left-[calc(50%-6px)] w-3 h-3 bg-foreground rotate-45 opacity-70 border border-background -mt-1.5 top-1/2 transform -translate-y-1/2"></div>

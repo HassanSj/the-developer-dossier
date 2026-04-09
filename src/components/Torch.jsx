@@ -1,101 +1,150 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import { flushSync } from 'react-dom';
 import { FlashlightOff, Flashlight } from 'lucide-react';
+import { useTorch } from '../context/TorchContext';
 
-function Torch() {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const overlayRef = useRef(null);
-  const switchSoundRef = useRef(null);
+const SWITCH_ON =
+  'https://res.cloudinary.com/dnpxalm5i/video/upload/gh-pages/public/sounds/switch-on.mp3';
+const SWITCH_OFF =
+  'https://res.cloudinary.com/dnpxalm5i/video/upload/gh-pages/public/sounds/switch-off.mp3';
 
-  // Initialize switch sound
+function Torch({ className = '' }) {
+  const buttonRef = useRef(null);
+  const iconWrapRef = useRef(null);
+  const audioRef = useRef(null);
+  const { theme, setTheme, torchEnabled, setTorchEnabled, isDesktop } = useTorch();
+
   useEffect(() => {
-    switchSoundRef.current = new Audio('/music/switch.mp3');
-    switchSoundRef.current.volume = 0.5; // Set volume to 50%
-    
+    audioRef.current = new Audio();
     return () => {
-      if (switchSoundRef.current) {
-        switchSoundRef.current = null;
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.src = '';
+        audioRef.current = null;
       }
     };
   }, []);
 
+  // Idle “tease” wobble on the icon when torch is off (original site behavior, desktop-ish)
   useEffect(() => {
-    if (!isEnabled) {
-      document.body.classList.remove('torch-cursor');
-      if (overlayRef.current) {
-        overlayRef.current.remove();
-      }
-      return;
-    }
+    if (typeof window === 'undefined') return undefined;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    if (torchEnabled) return undefined;
 
-    // Add torch cursor class
-    document.body.classList.add('torch-cursor');
-
-    // Create overlay element
-    const overlay = document.createElement('div');
-    overlay.className = 'torch-overlay';
-    overlay.ref = overlayRef;
-    overlayRef.current = overlay;
-    document.body.appendChild(overlay);
-
-    const updateTorchPosition = (e) => {
-      if (overlay) {
-        overlay.style.setProperty('--torch-x', `${e.clientX}px`);
-        overlay.style.setProperty('--torch-y', `${e.clientY}px`);
-      }
+    let timeoutId;
+    const schedule = () => {
+      const delay = 3000 + Math.floor(Math.random() * 2000);
+      timeoutId = window.setTimeout(() => {
+        const el = iconWrapRef.current;
+        if (el && !torchEnabled) {
+          el.animate(
+            [
+              { transform: 'rotate(0deg) scale(1)', filter: 'drop-shadow(0 0 0 rgba(255,240,200,0))' },
+              {
+                transform: 'rotate(-14deg) scale(1.06)',
+                offset: 0.2,
+                filter: 'drop-shadow(0 0 6px rgba(255,240,200,0.65))',
+              },
+              { transform: 'rotate(10deg) scale(1.03)', offset: 0.4 },
+              { transform: 'rotate(-6deg) scale(1.015)', offset: 0.6 },
+              { transform: 'rotate(3deg) scale(1.005)', offset: 0.8 },
+              {
+                transform: 'rotate(0deg) scale(1)',
+                offset: 1,
+                filter: 'drop-shadow(0 0 0 rgba(255,240,200,0))',
+              },
+            ],
+            { duration: 1200, easing: 'cubic-bezier(0.19, 1, 0.22, 1)' }
+          );
+        }
+        schedule();
+      }, delay);
     };
 
-    window.addEventListener('mousemove', updateTorchPosition);
-    window.addEventListener('touchmove', (e) => {
-      if (e.touches[0]) {
-        updateTorchPosition(e.touches[0]);
-      }
-    });
-
+    if (isDesktop) schedule();
     return () => {
-      window.removeEventListener('mousemove', updateTorchPosition);
-      window.removeEventListener('touchmove', updateTorchPosition);
-      document.body.classList.remove('torch-cursor');
-      if (overlay && overlay.parentNode) {
-        overlay.parentNode.removeChild(overlay);
-      }
+      if (timeoutId) window.clearTimeout(timeoutId);
     };
-  }, [isEnabled]);
+  }, [torchEnabled, isDesktop]);
 
-  // Play switch sound
-  const playSwitchSound = () => {
-    if (switchSoundRef.current) {
-      // Reset audio to start and play
-      switchSoundRef.current.currentTime = 0;
-      switchSoundRef.current.play().catch((error) => {
-        // Silently handle autoplay restrictions
-        console.log('Switch sound play failed:', error);
-      });
+  const playSwitchSound = (on) => {
+    const a = audioRef.current;
+    if (!a) return;
+    try {
+      a.pause();
+      a.src = on ? SWITCH_ON : SWITCH_OFF;
+      a.volume = 0.3;
+      a.play().catch(() => {});
+    } catch {
+      /* ignore */
     }
   };
 
-  const toggleTorch = () => {
-    playSwitchSound();
-    setIsEnabled(!isEnabled);
+  const goDarkWithViewTransition = async () => {
+    const el = buttonRef.current;
+    if (!el) {
+      setTheme('dark');
+      return;
+    }
+
+    if (typeof document.startViewTransition !== 'function') {
+      setTheme('dark');
+      return;
+    }
+
+    await document
+      .startViewTransition(() => {
+        flushSync(() => setTheme('dark'));
+      })
+      .ready;
+
+    const rect = el.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const maxR = Math.hypot(
+      Math.max(cx, window.innerWidth - cx),
+      Math.max(cy, window.innerHeight - cy)
+    );
+
+    document.documentElement.animate(
+      {
+        clipPath: [`circle(0px at ${cx}px ${cy}px)`, `circle(${maxR}px at ${cx}px ${cy}px)`],
+      },
+      { duration: 700, easing: 'ease-in-out', pseudoElement: '::view-transition-new(root)' }
+    );
+  };
+
+  const handleClick = async () => {
+    if (theme !== 'dark') {
+      await goDarkWithViewTransition();
+    }
+
+    const next = !torchEnabled;
+    setTorchEnabled(next);
+    playSwitchSound(next);
   };
 
   return (
     <button
       id="torch"
-      onClick={toggleTorch}
-      className="cursor-pointer p-2 text-foreground/80 hover:text-foreground transition-colors"
-      aria-label="Use torch to uncover hidden secrets."
-      title="Use torch to uncover hidden secrets."
+      ref={buttonRef}
+      type="button"
+      onClick={() => {
+        void handleClick();
+      }}
+      className={`cursor-pointer p-2 text-foreground/80 hover:text-foreground transition-colors ${className}`}
+      aria-label={torchEnabled ? 'Disable torch light' : 'Use torch to uncover hidden secrets.'}
+      title={torchEnabled ? 'Disable torch light' : 'Use torch to uncover hidden secrets.'}
     >
-      <span className="block will-change-transform">
-        {isEnabled ? (
-          <Flashlight className="h-5 w-5" />
-        ) : (
+      {torchEnabled ? (
+        <Flashlight className="h-5 w-5" />
+      ) : (
+        <span ref={iconWrapRef} className="block will-change-transform">
           <FlashlightOff className="h-5 w-5" />
-        )}
-      </span>
+        </span>
+      )}
     </button>
   );
 }
 
 export default Torch;
-

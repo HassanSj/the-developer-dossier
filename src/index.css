@@ -594,6 +594,17 @@ color-mix(in oklab, var(--foreground) 10%, transparent);
   backdrop-filter: var(--tw-backdrop-blur, ) var(--tw-backdrop-brightness, ) var(--tw-backdrop-contrast, ) var(--tw-backdrop-grayscale, ) var(--tw-backdrop-hue-rotate, ) var(--tw-backdrop-invert, ) var(--tw-backdrop-opacity, ) var(--tw-backdrop-saturate, ) var(--tw-backdrop-sepia, );
 }
 
+.mobile-menu-overlay {
+  /* Match original site: bg-background/70 + backdrop-blur-sm.
+     Use explicit RGBA so transparency works reliably in this build. */
+  background-color: rgba(255, 251, 235, 0.7); /* ~amber-50 paper */
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.dark .mobile-menu-overlay {
+  background-color: rgba(12, 10, 9, 0.7); /* ~zinc-950 paper */
+}
 .bg-background, .bg-background\/25 {
   background-color: var(--background);
 }
