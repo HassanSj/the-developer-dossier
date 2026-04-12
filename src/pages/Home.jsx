@@ -1,7 +1,46 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Feather, Linkedin, Map, ChevronRight, Download } from 'lucide-react';
+import { RoughNotation } from 'react-rough-notation';
 import FlashDownload from '../components/FlashDownload';
+import { useTorch } from '../context/TorchContext';
+
+const POSTAL_STAMP_SRC =
+  'https://res.cloudinary.com/dnpxalm5i/image/upload/f_auto,q_auto,w_256/gh-pages/public/images/postal-red-stamp.png';
+const POSTAL_STAMP_SRC_SET =
+  'https://res.cloudinary.com/dnpxalm5i/image/upload/f_auto,q_auto,w_128/gh-pages/public/images/postal-red-stamp.png 1x, https://res.cloudinary.com/dnpxalm5i/image/upload/f_auto,q_auto,w_256/gh-pages/public/images/postal-red-stamp.png 2x';
+
+function PostalStamp({ variant, isMounted, torchEnabled }) {
+  const padding = variant === 'mobile' ? 4 : 6;
+  return (
+    <RoughNotation
+      type="circle"
+      color="#f59e0b"
+      strokeWidth={1.5}
+      animationDuration={600}
+      iterations={2}
+      padding={padding}
+      show={Boolean(isMounted && torchEnabled)}
+      className="inline-block"
+    >
+      <img
+        alt="Postal Stamp"
+        loading="lazy"
+        width={100}
+        height={100}
+        decoding="async"
+        className={
+          variant === 'mobile'
+            ? 'w-full h-auto'
+            : 'w-24 h-auto rotate-[-15deg] opacity-70 hover:opacity-100 hover:rotate-0 transition-all duration-300'
+        }
+        style={{ color: 'transparent' }}
+        srcSet={POSTAL_STAMP_SRC_SET}
+        src={POSTAL_STAMP_SRC}
+      />
+    </RoughNotation>
+  );
+}
 
 function Home() {
   const testimonials = [
@@ -52,9 +91,35 @@ function Home() {
   const [isButtonHovered, setIsButtonHovered] = useState(false);
   const [isButtonFading, setIsButtonFading] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const correspondenceRef = useRef(null);
+  const [stampInView, setStampInView] = useState(false);
+  const [stampReducedMotion, setStampReducedMotion] = useState(false);
+  const { torchEnabled } = useTorch();
 
   useEffect(() => {
     setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setStampReducedMotion(reduceMotion);
+    if (reduceMotion) {
+      setStampInView(true);
+      return;
+    }
+    const el = correspondenceRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setStampInView(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }
+    );
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
   useEffect(() => {
@@ -1607,7 +1672,11 @@ function Home() {
       </section>
 
       {/* CORRESPONDENCE Section */}
-      <section id="correspondence" className="py-12 relative mx-auto max-w-5xl px-4 sm:px-6">
+      <section
+        id="correspondence"
+        ref={correspondenceRef}
+        className="py-12 relative mx-auto max-w-5xl px-4 sm:px-6"
+      >
         <div className="text-center mb-12 border-b-1 border-foreground/20 pb-6">
           <div className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
             Letters & Dispatches
@@ -1626,19 +1695,18 @@ function Home() {
               Whether you carry tidings of great opportunity, seek counsel, or simply wish to exchange pleasantries, do not hesitate to make contact. Replies are often dispatched within one or two days of receipt.
             </p>
 
-            <div className="mt-auto pt-4 border-t border-foreground/10">
-              <div className="block md:hidden absolute right-8 -mt-12 w-14 h-auto rotate-[-15deg] opacity-80">
-                <img
-                  alt="Postal Stamp"
-                  loading="lazy"
-                  width="100"
-                  height="100"
-                  decoding="async"
-                  className="w-full h-auto"
-                  style={{ color: 'transparent' }}
-                  srcSet="https://res.cloudinary.com/dnpxalm5i/image/upload/f_auto,q_auto,w_128/gh-pages/public/images/postal-red-stamp.png 1x, https://res.cloudinary.com/dnpxalm5i/image/upload/f_auto,q_auto,w_256/gh-pages/public/images/postal-red-stamp.png 2x"
-                  src="https://res.cloudinary.com/dnpxalm5i/image/upload/f_auto,q_auto,w_256/gh-pages/public/images/postal-red-stamp.png"
-                />
+            <div className="relative mt-auto pt-4 border-t border-foreground/10">
+              <div
+                className={[
+                  'block md:hidden absolute right-8 -mt-12 w-14 h-auto rotate-[-15deg]',
+                  stampReducedMotion
+                    ? 'opacity-80'
+                    : stampInView
+                      ? 'animate-postal-stamp-mobile'
+                      : 'opacity-0',
+                ].join(' ')}
+              >
+                <PostalStamp variant="mobile" isMounted={isMounted} torchEnabled={torchEnabled} />
               </div>
 
               <div className="flex justify-between items-end">
@@ -1681,10 +1749,10 @@ function Home() {
             <div className="flex items-start gap-3 cursor-pointer">
               <Feather className="w-4 h-4" />
               <a
-                href="mailto:sajjadhassa389gmail.com"
+                href="mailto:sajjadhassa389@gmail.com"
                 className="hover:underline underline-offset-2"
               >
-                <span>sajjadhassa389gmail.com</span>
+                <span>sajjadhassa389@gmail.com</span>
               </a>
             </div>
             <div className="flex items-start gap-3 cursor-pointer">
@@ -1707,18 +1775,15 @@ function Home() {
           </div>
         </div>
 
-        <div className="absolute bottom-24 right-16 hidden md:block">
-          <img
-            alt="Postal Stamp"
-            loading="lazy"
-            width="100"
-            height="100"
-            decoding="async"
-            className="w-24 h-auto rotate-[-15deg] opacity-70 hover:opacity-100 hover:rotate-0 transition-all duration-300"
-            style={{ color: 'transparent' }}
-            srcSet="https://res.cloudinary.com/dnpxalm5i/image/upload/f_auto,q_auto,w_128/gh-pages/public/images/postal-red-stamp.png 1x, https://res.cloudinary.com/dnpxalm5i/image/upload/f_auto,q_auto,w_256/gh-pages/public/images/postal-red-stamp.png 2x"
-            src="https://res.cloudinary.com/dnpxalm5i/image/upload/f_auto,q_auto,w_256/gh-pages/public/images/postal-red-stamp.png"
-          />
+        <div
+          className={[
+            'absolute bottom-24 right-16 hidden md:block',
+            stampReducedMotion ? '' : stampInView ? 'animate-postal-stamp-desktop' : 'opacity-0',
+          ]
+            .filter(Boolean)
+            .join(' ')}
+        >
+          <PostalStamp variant="desktop" isMounted={isMounted} torchEnabled={torchEnabled} />
         </div>
 
         <div className="uppercase absolute top-10 sm:top-0 right-0 text-[86px] xs:text-[100px] sm:text-[150px] md:text-[200px] leading-none font-bold font-serif text-foreground/10 md:text-foreground/5 -z-10 select-none pointer-events-none">
