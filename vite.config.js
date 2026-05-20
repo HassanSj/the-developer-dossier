@@ -3,7 +3,6 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/Hassan-Sajjad-Dev/',   // 🔥 THIS IS REQUIRED
   server: {
     port: 3000,
     proxy: {
